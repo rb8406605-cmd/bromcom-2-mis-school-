@@ -102,7 +102,11 @@
 
             // LOGIN PAGE
             if(!current) {
-                const [u, su, sp, sr] = ['u', 'su', 'sp', 'sr'].map(id => React.useRef(null));
+                const [loginUser, setLoginUser] = useState('');
+                const [loginPass, setLoginPass] = useState('');
+                const [signupUser, setSignupUser] = useState('');
+                const [signupPass, setSignupPass] = useState('');
+                const [signupRole, setSignupRole] = useState('teacher');
                 return (
                     <div className="min-h-screen bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center p-4">
                         <div className="bg-white rounded-lg shadow-xl p-8 max-w-md w-full space-y-4">
@@ -111,20 +115,20 @@
                             <hr/>
                             <div>
                                 <label className="block text-sm font-semibold mb-2">Login</label>
-                                <input ref={u} placeholder="Username" className="border p-2 w-full rounded mb-2"/>
-                                <input ref={su} type="password" placeholder="Password" className="border p-2 w-full rounded"/>
-                                <button className="bg-blue-600 text-white p-2 w-full rounded mt-2 hover:bg-blue-700" onClick={()=>login(u.current.value,su.current.value)}>Login</button>
+                                <input value={loginUser} onChange={e=>setLoginUser(e.target.value)} placeholder="Username" className="border p-2 w-full rounded mb-2"/>
+                                <input value={loginPass} onChange={e=>setLoginPass(e.target.value)} type="password" placeholder="Password" className="border p-2 w-full rounded"/>
+                                <button className="bg-blue-600 text-white p-2 w-full rounded mt-2 hover:bg-blue-700" onClick={()=>login(loginUser,loginPass)}>Login</button>
                             </div>
                             <hr/>
                             <div>
                                 <label className="block text-sm font-semibold mb-2">Create Account</label>
-                                <input ref={sp} placeholder="Username" className="border p-2 w-full rounded mb-2"/>
-                                <input ref={sr} type="password" placeholder="Password" className="border p-2 w-full rounded mb-2"/>
-                                <select className="border p-2 w-full rounded mb-2">
+                                <input value={signupUser} onChange={e=>setSignupUser(e.target.value)} placeholder="Username" className="border p-2 w-full rounded mb-2"/>
+                                <input value={signupPass} onChange={e=>setSignupPass(e.target.value)} type="password" placeholder="Password" className="border p-2 w-full rounded mb-2"/>
+                                <select value={signupRole} onChange={e=>setSignupRole(e.target.value)} className="border p-2 w-full rounded mb-2">
                                     <option value="teacher">Teacher</option>
                                     <option value="admin">Admin</option>
                                 </select>
-                                <button className="bg-green-600 text-white p-2 w-full rounded hover:bg-green-700" onClick={()=>signup(sp.current.value,sr.current.value, 'teacher')}>Create Account</button>
+                                <button className="bg-green-600 text-white p-2 w-full rounded hover:bg-green-700" onClick={()=>signup(signupUser,signupPass,signupRole)}>Create Account</button>
                             </div>
                         </div>
                     </div>
